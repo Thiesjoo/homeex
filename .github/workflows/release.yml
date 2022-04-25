@@ -1,4 +1,4 @@
-name: Create Archive
+name: Create Archive Of Extension
 on:
   push:
     branches:
