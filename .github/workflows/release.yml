@@ -23,4 +23,5 @@ jobs:
           artifacts: "release.zip"
           allowUpdates: "true"
           tag: "latest"
+          body: ${{ github.event.head_commit.message }}
           token: ${{ secrets.GITHUB_TOKEN }}
