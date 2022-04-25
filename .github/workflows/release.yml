@@ -34,6 +34,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./homeex.zip
+          asset_path: ./src/homeex.zip
           asset_name: homeex.zip
           asset_content_type: application/zip
