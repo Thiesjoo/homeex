@@ -1,0 +1,23 @@
+name: Create Archive
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+          type: "zip"
+          directory: "src"
+          filename: "homeex.zip"
+          exclusions: "*.git* /*node_modules/* .editorconfig"
+      - name: Upload Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "release.zip"
+          allowUpdates: "true"
+          token: ${{ secrets.GITHUB_TOKEN }}
