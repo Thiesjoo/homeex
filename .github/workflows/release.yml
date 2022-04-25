@@ -17,12 +17,21 @@ jobs:
           directory: "src"
           filename: "homeex.zip"
           exclusions: "*.git* /*node_modules/* .editorconfig"
+      - name: Recreate Release
+        uses: GongT/actions-recreate-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: latest
+          release_name: Release at ${{ github.ref }}
+          body: ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "release.zip"
           allowUpdates: "true"
           tag: "latest"
-          allowUpdates: "true"
           body: ${{ github.event.head_commit.message }}
           token: ${{ secrets.GITHUB_TOKEN }}
