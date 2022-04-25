@@ -1,11 +1,10 @@
 {
 	"name": "HomeEx",
-	"version": "0.0.1",
-	"description": "Steal your POS cookie, and set homepage to thies.dev",
+	"version": "0.0.2",
+	"description": "This extension sets your homepage to thies.dev/home, my custom developed home page. ",
 	"manifest_version": 3,
 	"author": "Thies Nieborg",
-
-	"host_permissions": ["https://pos.svia.nl/*", "https://*.thies.dev/*"],
+	"host_permissions": ["https://pos.svia.nl/*"],
 	"permissions": ["webRequest"],
 	"background": {
 		"service_worker": "background.js"
@@ -13,5 +12,7 @@
 	"chrome_url_overrides": {
 		"newtab": "index.html"
 	},
-	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArJ9J2xieWzdrrQ+8pzR07PxJzjb7sVXYdCU//8k4Oe1VIvhpqfz3keDcVZhNao0j1l8KP6ZwjQ2TkUVdOH34VjHb8i8HFk3R+aSfwcBr/07sarzvOXGTW30je/dmRxqHak9ufqKV1T/ALolw66T5RGUCxSXStD851xJouyE5D2rgHDZuu6M7mXDzrNrU7flMakYDCMpOCq+iiH4WyxMrAApfKItM1ha/EV+wzTu0t/leaY25J4oZxD3KDoGl7AjynpycOt14MvMDqE5vVM8ah84t8OMXPm3eGyvmDbpx0ZDey9jgGgPIgdclcjYdoO579EAXb61q6PL7EmGpTXrXuQIDAQAB"
+	"icons": {
+		"128": "icon.png"
+	}
 }
