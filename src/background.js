@@ -25,7 +25,7 @@ chrome.webRequest.onSendHeaders.addListener(
           credentials: "include",
           method: "GET",
         })
-        requestData("https://auth.thies.dev/api/providers/me/via/thies", token)
+        requestData("https://auth.thies.dev/api/providers/me/via/pos", token)
       } catch (e) {
         console.error("Request to thies.dev failed with error:", e)
       }
