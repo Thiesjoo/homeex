@@ -5,9 +5,16 @@
 	"manifest_version": 3,
 	"author": "Thies Nieborg",
 	"host_permissions": ["https://pos.svia.nl/*"],
-	"permissions": ["webRequest", "webNavigation"],
+	"permissions": ["webRequest", "webNavigation", "storage"],
 	"background": {
 		"service_worker": "background.js"
+	},
+	"options_ui": {
+		"page": "options/options.html",
+		"open_in_tab": false
+	},
+	"action": {
+		"default_popup": "options/options.html"
 	},
 	"chrome_url_overrides": {
 		"newtab": "index.html"

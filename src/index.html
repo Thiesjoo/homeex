@@ -13,6 +13,7 @@
       margin: 0px;
       padding: 0px;
       overflow: hidden;
+      background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
     }
 
     iframe {
@@ -27,9 +28,11 @@
 
 
 <body>
-  <iframe
-   sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-    src="http://localhost:3000/home"></iframe>
+  <iframe id="iframe"
+    sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+    src="https://thies.dev/home"></iframe>
 </body>
+
+<script src="newtab.js"></script>
 
 </html>

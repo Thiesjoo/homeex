@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Options for thies.dev</title>
+  <style>
+    body {
+      min-width: 200px;
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .content>* {
+      margin: 5px;
+    }
+
+    h2,
+    h3 {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <h2>Version to use
+    </h2>
+
+    <select id="version">
+      <option value="local">Local</option>
+      <option value="preview">Preview</option>
+      <option value="production">Production</option>
+    </select>
+
+    <div id="status"></div>
+    <button id="save">Save</button>
+  </div>
+</body>
+<script src="options.js"></script>
+
+</html>
