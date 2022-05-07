@@ -1,11 +1,11 @@
 {
 	"name": "HomeEx",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "This extension sets your homepage to thies.dev/home, my custom developed home page. ",
 	"manifest_version": 3,
 	"author": "Thies Nieborg",
 	"host_permissions": ["https://pos.svia.nl/*"],
-	"permissions": ["webRequest"],
+	"permissions": ["webRequest", "webNavigation"],
 	"background": {
 		"service_worker": "background.js"
 	},
@@ -14,5 +14,6 @@
 	},
 	"icons": {
 		"128": "icon.png"
-	}
+	},
+	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhpt+7luyGBAdclYDwgehPnIEctcMN5kuiJypEjIRH5E2cXuBf4Bpnb8l0CUw7qFNSCGk9jVlsvTQNhbRzbCXXsov6TW/GlSeut9TOu2tCBJ+gSSA/Vy3FioqmdLl0lAopzlJLfBLL1bG1xDUW4pJNGwZ7ouJI+6iytQAWo7xe+Jl0HGA/2ZGWt7dXjT6vF9q3pS3Od4QZu1Kw+bviKOgHbqB17N6XxKRXGT76TjfkBiWccEThGxy6yr2nV8Ah+eOTF3w1GJZX7KpReAWZgwveLN5ZGSfMxClcCwL/nt5DjLaXsA8BBVvjomz2UNEsaopwgRKbMyduSjpg/rKg4ObewIDAQAB"
 }
