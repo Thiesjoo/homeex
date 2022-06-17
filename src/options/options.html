@@ -5,7 +5,8 @@
   <title>Options for thies.dev</title>
   <style>
     body {
-      min-width: 200px;
+      min-width: 300px;
+      overflow: hidden;
     }
 
     .content {
@@ -22,19 +23,36 @@
     h3 {
       text-align: center;
     }
+
+    .false {
+      color: red
+    }
+
+    .true {
+      color: green
+    }
   </style>
 </head>
 
 <body>
   <div class="content">
-    <h2>Version to use
-    </h2>
+    <h1>Welcome <span id='username'>...</span></h1>
+    <p> POS syncing available: <span id="syncing" class="false">NO</span></p>
+    <p> POS syncing enabled: <span id="enabled" class="false">NO</span></p>
+
+
+    <h2>Version to use</h2>
 
     <select id="version">
       <option value="local">Local</option>
       <option value="preview">Preview</option>
       <option value="production">Production</option>
     </select>
+
+    <div style="display:flex;flex-direction:row;">
+      <label for="enablePos">Enable POS synchronization</label>
+      <input type="checkbox" id="enablePos" disabled>
+    </div>
 
     <div id="status"></div>
     <button id="save">Save</button>
