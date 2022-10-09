@@ -1,15 +1,48 @@
-function requestData(url, token) {
+/**
+ * Try to get an accesstoken for thies.dev
+ * @returns 
+ */
+async function getAccessToken() {
+  const accessToken =
+    await chrome.cookies.get({ name: "accesstoken", url: "https://thies.dev" })
+  if (accessToken) {
+    return accessToken.value
+  }
+  const refreshToken =
+    await chrome.cookies.get({ name: "refreshtoken", url: "https://auth.thies.dev/auth" })
+
+  if (!refreshToken) {
+    throw new Error("No tokens found")
+  }
+  await fetch("https://auth.thies.dev/auth/refresh/access", {
+    credentials: "include",
+    headers: {
+      "Authorization": `Bearer ${refreshToken.value}`
+    },
+    method: "GET",
+  })
+
+  const accessToken2 =
+    await chrome.cookies.get({ name: "accesstoken", url: "https://thies.dev" })
+  if (accessToken2) {
+    return accessToken2.value
+  }
+
+  throw new Error("Refresh failed")
+}
+
+async function requestData(url, token) {
   fetch(url, {
     credentials: "include",
     method: "PATCH",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      "Authorization": `Bearer ${await getAccessToken()}`
     },
     body: JSON.stringify({ accessToken: token })
   })
     .then(x => x.json()).then(x => console.log("URL:", url, "resp: ", x))
 }
-
 
 chrome.webNavigation.onBeforeNavigate.addListener(function () {
   chrome.webRequest.onSendHeaders.addListener(
@@ -27,12 +60,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(function () {
             if (!token) return;
 
             try {
-              // Real server has to refresh
-              await fetch("https://auth.thies.dev/auth/refresh/access", {
-                credentials: "include",
-                method: "GET",
-              })
-              requestData("https://auth.thies.dev/api/providers/me/via/pos", token)
+              await requestData("https://auth.thies.dev/api/providers/me/via/pos", token)
             } catch (e) {
               console.error("Request to thies.dev failed with error:", e)
             }

@@ -1,3 +1,36 @@
+/**
+ * Try to get an accesstoken for thies.dev
+ * @returns 
+ */
+async function getAccessToken() {
+  const accessToken =
+    await chrome.cookies.get({ name: "accesstoken", url: "https://thies.dev" })
+  if (accessToken) {
+    return accessToken.value
+  }
+  const refreshToken =
+    await chrome.cookies.get({ name: "refreshtoken", url: "https://auth.thies.dev/auth" })
+
+  if (!refreshToken) {
+    throw new Error("No tokens found")
+  }
+  await fetch("https://auth.thies.dev/auth/refresh/access", {
+    credentials: "include",
+    headers: {
+      "Authorization": `Bearer ${refreshToken.value}`
+    },
+    method: "GET",
+  })
+
+  const accessToken2 =
+    await chrome.cookies.get({ name: "accesstoken", url: "https://thies.dev" })
+  if (accessToken2) {
+    return accessToken2.value
+  }
+
+  throw new Error("Refresh failed")
+}
+
 function saveOptions() {
   const version = document.getElementById('version').value;
   const pos = document.getElementById('enablePos').checked;
@@ -33,19 +66,22 @@ async function restoreOptions() {
     document.getElementById('version').value = version;
   });
 
-
-  // First refresh all of our tokens
-  await fetch("https://auth.thies.dev/auth/refresh/access", {
-    credentials: "include",
-    method: "GET",
+  let userData = await fetch('https://auth.thies.dev/api/users/me', {
+    credentials: 'include',
+    headers: {
+      "Authorization": `Bearer ${await getAccessToken()}`
+    }
   })
-
-  let userData = await fetch('https://auth.thies.dev/api/users/me', { credentials: 'include' })
 
   const user = document.getElementById("username")
   user.textContent = (await userData.json())?.name
 
-  const providerData = await fetch('https://auth.thies.dev/api/providers/me', { credentials: 'include' })
+  const providerData = await fetch('https://auth.thies.dev/api/providers/me', {
+    credentials: 'include',
+    headers: {
+      "Authorization": `Bearer ${await getAccessToken()}`
+    }
+  })
   const providersAvailable = (await providerData.json())
   const foundPos = !!providersAvailable.find(x => x.name === "via" && x.id === "pos")
 
