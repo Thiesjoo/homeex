@@ -7,30 +7,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New tab</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
     html,
     body {
-      border: 0px;
-      margin: 0px;
-      padding: 0px;
       overflow: hidden;
       background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);
     }
 
+    .parent {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 100vh;
+
+      /* Source for vertical scrolling: https://stackoverflow.com/questions/53416348/css-scroll-snapping-vertical-not-working */
+      scroll-snap-points-y: repeat(100vh);
+      scroll-snap-type: y mandatory;
+
+      /* IE and Edge */
+      -ms-overflow-style: none;
+      /* Firefox */
+      scrollbar-width: none;
+    }
+
+    .parent::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container {
+      position: relative;
+      scroll-snap-align: start;
+    }
+
     iframe {
+      scroll-snap-align: start;
       width: 100vw;
       height: 100vh;
-      border: none;
-      margin: 0;
-      display: block;
+
     }
   </style>
 </head>
 
 
 <body>
-  <iframe id="iframe"
-    sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-    src="https://thies.dev/home"></iframe>
+  <div class="parent">
+    <div class="container">
+      <iframe id="iframe"
+        sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        src="https://thies.dev/home"></iframe>
+    </div>
+    <div class="container">
+
+      <iframe id="dashboard" loading="lazy"
+        sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        src="https://thies.dev/home"></iframe>
+    </div>
+  </div>
 </body>
 
 <script src="newtab.js"></script>
