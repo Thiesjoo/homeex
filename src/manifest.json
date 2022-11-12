@@ -1,7 +1,7 @@
 {
 	"name": "HomeEx",
-	"version": "0.0.5",
-	"description": "This extension sets your homepage to thies.dev/home, my custom developed home page. ",
+	"version": "0.0.6",
+	"description": "This extension sets your homepage to thies.dev/home, my custom developed home page.",
 	"manifest_version": 3,
 	"author": "Thies Nieborg",
 	"host_permissions": ["https://pos.svia.nl/*", "https://*.thies.dev/"],
