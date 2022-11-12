@@ -34,10 +34,12 @@ async function getAccessToken() {
 function saveOptions() {
   const version = document.getElementById('version').value;
   const pos = document.getElementById('enablePos').checked;
+  const devices = document.getElementById('enableDevices').checked;
+
 
   chrome.storage.sync.set({
     version,
-    pos
+    pos, devicesEnabled: devices
   }, function () {
     const enabled = document.getElementById("enabled")
     enabled.className = "" + pos;
@@ -54,14 +56,18 @@ function saveOptions() {
 async function restoreOptions() {
   chrome.storage.sync.get({
     version: "production",
-    pos: false
-  }, function ({ version, pos }) {
+    pos: false, devicesEnabled: false
+  }, function ({ version, pos, devicesEnabled }) {
     const enabled = document.getElementById("enabled")
     enabled.className = "" + pos;
     enabled.textContent = pos ? "YES" : "NO";
 
     const enablePos = document.getElementById("enablePos")
     enablePos.checked = pos
+
+    const enableDevices = document.getElementById("enableDevices")
+    enableDevices.checked = devicesEnabled
+
 
     document.getElementById('version').value = version;
   });

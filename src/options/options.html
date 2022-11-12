@@ -37,8 +37,10 @@
 <body>
   <div class="content">
     <h1>Welcome <span id='username'>...</span></h1>
-    <p> POS syncing available: <span id="syncing" class="false">NO</span></p>
-    <p> POS syncing enabled: <span id="enabled" class="false">NO</span></p>
+    <p> POS syncing available: <span id="syncing"
+            class="false">NO</span></p>
+    <p> POS syncing enabled: <span id="enabled"
+            class="false">NO</span></p>
 
 
     <h2>Version to use</h2>
@@ -51,7 +53,15 @@
 
     <div style="display:flex;flex-direction:row;">
       <label for="enablePos">Enable POS synchronization</label>
-      <input type="checkbox" id="enablePos" disabled>
+      <input type="checkbox"
+             id="enablePos"
+             disabled>
+    </div>
+
+    <div style="display:flex;flex-direction:row;">
+      <label for="enableDevices">Enable a second tab with device summary</label>
+      <input type="checkbox"
+             id="enableDevices">
     </div>
 
     <div id="status"></div>

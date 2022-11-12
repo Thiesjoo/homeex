@@ -8,9 +8,10 @@ async function getAccessToken() {
   if (accessToken) {
     return accessToken.value
   }
+
+  // Access token is not found, so we try to refresh the token
   const refreshToken =
     await chrome.cookies.get({ name: "refreshtoken", url: "https://auth.thies.dev/auth" })
-
   if (!refreshToken) {
     throw new Error("No tokens found")
   }
