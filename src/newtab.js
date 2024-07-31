@@ -2,6 +2,7 @@ const URLMAP = {
   "production": "https://thies.dev/",
   "preview": "https://preview.thies.dev/",
   "local": "http://localhost:3000/",
+  "homarr": "https://homarr.home.thies.dev/b"
 }
 
 chrome.storage.sync.get({
@@ -11,7 +12,8 @@ chrome.storage.sync.get({
   const home = document.getElementById("iframe");
   const devices = document.getElementById("dashboard");
 
-  home.src = URLMAP[items.version] + "home";
+  const suffix = items.version === "homarr" ? "" : "home";
+  home.src = URLMAP[items.version] + suffix;
 
   if (items.devicesEnabled) {
     devices.src = URLMAP[items.version] + "devices";

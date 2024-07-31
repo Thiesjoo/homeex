@@ -19,3 +19,8 @@ Here is a short guide how to install an unpacked extension on Google Chrome or E
 ![alt text](https://camo.githubusercontent.com/52ad903185ee381cf30ed2934d0e7d12d791c920c77131617233ad17303cb35f/68747470733a2f2f692e696d6775722e636f6d2f786463686451612e706e67)
 
 2. Click on the "Load unpacked" button and select the folder extracted from the zip archive.
+
+## Distribute the extension in the chrome web store
+
+1. Go to: https://chrome.google.com/webstore/devconsole/615ff81f-5794-4a3b-a353-8c2ecffb758a
+2. Upload zip of src directory
